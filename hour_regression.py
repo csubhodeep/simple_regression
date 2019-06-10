@@ -114,7 +114,7 @@ class HourRegression:
         """
 
         try:
-            assert (isinstance(data,np.float))
+            assert (data.shape[1]==17)
             logging.info("Pre processing raw data")
             # taking the last column - 'cnt' to be the dependent variable
             y = data[:, -1]
@@ -125,8 +125,8 @@ class HourRegression:
 
             # the second (date) column is redundant and non-numeric therefore has not been considered
             # the first column has been kept only to identify each prediction with its instance and has not been considered in the analysis
-            # deleting un-necessary features like registered and casual counts as they have been considered as dependent variables
-            new_data = np.delete(data, [1, 2, 9, 14, 15], 1)
+            # deleting un-necessary features like registered, casual and total (cnt) counts as they have been considered as dependent variables
+            new_data = np.delete(data, [1, 2, 9, 14, 15, 16], 1)
             X = np.hstack((new_data,season_cols,weather_cols))
             # the total data is shuffled and split into training and testing data sets
             x_train, x_test, y_train, y_test = train_test_split(X, y,shuffle=True)

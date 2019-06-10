@@ -20,7 +20,8 @@ class TestHourRegressionMethods(unittest.TestCase):
         self.assertRaises(AssertionError,self.test_object.main(path))
 
     def test_pre_process(self):
-        data = "not a numpy float array"
+		# number od columns less than 17
+        data = np.array([[1,2,3]])
         self.assertRaises(AssertionError,self.test_object.pre_process(data))
 
     def tearDown(self):
